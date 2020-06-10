@@ -16,7 +16,8 @@ class Result(models.Model):
 		return self.obtained/self.available*100
 
 	def min_mark(self, test_number):
-		return (Result.objects.filter(test_id=test_number).aggregate(Min('mark')))['mark__min']
+		return (Result.objects.filter(test_id=test_number).
+			aggregate(Min('mark')))['mark__min']
 
 	def max_mark(self, test_number):
 		return Result.objects.filter(test_id=test_number).aggregate(Max('mark'))
