@@ -5,3 +5,8 @@ class ResultSerializer(serializers.ModelSerializer):
 	class Meta:
 		fields = ('min_mark', 'max_mark', 'mean_mark', 'std_mark', 'count_mark', 'percentiles',)
 		model = Result
+
+class ResultImportSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Result
+		fields = ('test_id')

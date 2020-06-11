@@ -42,12 +42,16 @@ INSTALLED_APPS = [
     # 3rd party
     'numpy',
     'rest_framework',
+    'rest_framework_xml',
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
     'rest_framework.permissions.AllowAny',
-    ]
+    ], 
+    'DEFAULT_PARSER_CLASSES':[
+        'rest_framework_xml.parsers.XMLParser',
+        ],
 }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
