@@ -10,11 +10,35 @@ from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .mark_parser import XMLParser
+import numpy
 
 
 class ResultSummary(generics.ListAPIView):
 	# def test_id(request, test_number):
 	# 	return HttpResponse(test_number)
+	# serializer_class = ResultSerializer
+
+	# def get_queryset(self):
+	# 	return Result.objects.filter(test_id=self.kwargs['test_number'])
+	# 	results = filtered.values('mark')
+	# 	result_array = []
+	# 	for element in results:
+	# 		result_array.append(element['mark'])
+	# 	percentile_25 = numpy.percentile(result_array, 25)
+	# 	percentile_50 = numpy.percentile(result_array, 50)
+	# 	percentile_75 = numpy.percentile(result_array, 75)
+	# 	return percentile_25, percentile_50, percentile_75
+
+	# def min_mark(self):
+	# 	return (filtered.aggregate(min_mark=Min('mark')))['min_mark']
+	# def max_mark(self):
+	# 	return (filtered.aggregate(max_mark=Max('mark')))['max_mark']
+	# def mean_mark(self):
+	# 	return (filtered.aggregate(avg_mark=Avg('mark')))['avg_mark']
+	# def std_mark(self):
+	# 	return (filtered.aggregate(std_mark=StdDev('mark')))['std_mark']
+	# def count_mark(self):
+	# 	return (filtered.aggregate(count_mark=Count('mark')))['count_mark']
 	def get_queryset(self):
 		return Result.objects.filter(test_id=self.kwargs['test_number'])
 	# queryset = Result.objects.filter(test_id=self.kwargs['test_number'])

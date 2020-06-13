@@ -1,7 +1,6 @@
 from django.db import models
 from django.db.models import Min, Max, Avg, StdDev, Count, FloatField
 import numpy
-
 # Create your models here.
 
 
