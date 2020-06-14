@@ -5,7 +5,8 @@ This is a mini api project.
 You can either use the docker file to test out the code, or install django and other libraries in the requirements.txt with your virtual environment(eg. pipenv). In this case you will need to have python installed, and run '''pip install pipenv''' in your command line, see https://www.python.org/ and https://pypi.org/project/pipenv/ for more information. 
 
 ## Code Structure
-'''
+
+'''bash
 .
 ├── Dockerfile
 ├── README.md
@@ -97,7 +98,10 @@ You can either use the docker file to test out the code, or install django and o
 ## SwaggerDocumentation
 ![documentation](https://github.com/Bing-Violet/marking_draft/blob/master/marks/test_files/Untitled.gif)
 
-## Limitations
+## Demonstration
+![demonstration](https://github.com/Bing-Violet/marking_draft/blob/master/marks/test_files/Demo.gif)
+
+## Limitations 
 It's been a hectic week and I couldn't work out a big chunk of time so my unittests are still at a premature stage. I might update the tests in the rest of the days. I fully understand the significance of TDD and apologize for my practice went the other way round this time. 
 
 
