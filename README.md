@@ -5,6 +5,7 @@ This is a mini api project.
 You can either use the docker file to test out the code, or install django and other libraries in the requirements.txt with your virtual environment(eg. pipenv). In this case you will need to have python installed, and run '''pip install pipenv''' in your command line, see https://www.python.org/ and https://pypi.org/project/pipenv/ for more information. 
 
 ## Code Structure
+'''
 .
 ├── Dockerfile
 ├── README.md
@@ -54,6 +55,7 @@ You can either use the docker file to test out the code, or install django and o
 │   ├── urls.py
 │   └── wsgi.py
 └── requirements.txt
+'''
 
 ## What does it do?
 ### Post
