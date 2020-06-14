@@ -6,7 +6,8 @@ You can either use the docker file to test out the code, or install django and o
 
 ## Code Structure
 
-'''bash
+'''
+
 .
 ├── Dockerfile
 ├── README.md
@@ -39,6 +40,7 @@ You can either use the docker file to test out the code, or install django and o
 │   │       └── __init__.cpython-38.pyc
 │   ├── models.py
 │   ├── test_files
+│   │   ├── Demo.gif
 │   │   ├── Untitled.gif
 │   │   └── test.xml
 │   ├── test_marks.py
@@ -56,6 +58,9 @@ You can either use the docker file to test out the code, or install django and o
 │   ├── urls.py
 │   └── wsgi.py
 └── requirements.txt
+
+7 directories, 42 files
+
 '''
 
 ## What does it do?
