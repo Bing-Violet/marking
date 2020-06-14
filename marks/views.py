@@ -1,48 +1,41 @@
 from django.shortcuts import render
+from rest_framework.renderers import JSONRenderer
 
 # Create your views here.
 from rest_framework import generics, viewsets
 
 from .models import Result
-from .serializers import ResultSerializer
+
 from django.http import HttpResponse
 # from rest_framework_xml.parsers import XMLParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .mark_parser import XMLParser
 import numpy
+from django.db.models import Min, Max, Avg, StdDev, Count, FloatField
 
 
-class ResultSummary(generics.ListAPIView):
-	# def test_id(request, test_number):
-	# 	return HttpResponse(test_number)
-	# serializer_class = ResultSerializer
+class ResultSummary(APIView):
+	def get(self, request, *args, **kwargs):
 
-	# def get_queryset(self):
-	# 	return Result.objects.filter(test_id=self.kwargs['test_number'])
-	# 	results = filtered.values('mark')
-	# 	result_array = []
-	# 	for element in results:
-	# 		result_array.append(element['mark'])
-	# 	percentile_25 = numpy.percentile(result_array, 25)
-	# 	percentile_50 = numpy.percentile(result_array, 50)
-	# 	percentile_75 = numpy.percentile(result_array, 75)
-	# 	return percentile_25, percentile_50, percentile_75
+		renderer_classes = [JSONRenderer]
 
-	# def min_mark(self):
-	# 	return (filtered.aggregate(min_mark=Min('mark')))['min_mark']
-	# def max_mark(self):
-	# 	return (filtered.aggregate(max_mark=Max('mark')))['max_mark']
-	# def mean_mark(self):
-	# 	return (filtered.aggregate(avg_mark=Avg('mark')))['avg_mark']
-	# def std_mark(self):
-	# 	return (filtered.aggregate(std_mark=StdDev('mark')))['std_mark']
-	# def count_mark(self):
-	# 	return (filtered.aggregate(count_mark=Count('mark')))['count_mark']
-	def get_queryset(self):
-		return Result.objects.filter(test_id=self.kwargs['test_number'])
-	# queryset = Result.objects.filter(test_id=self.kwargs['test_number'])
-	serializer_class = ResultSerializer
+		test_id = kwargs.get('test_number', '1')
+		count_mark = (Result.objects.filter(test_id=test_id)).count()
+		min_mark = (Result.objects.filter(test_id=test_id)).aggregate(Min('mark'))
+		max_mark = (Result.objects.filter(test_id=test_id)).aggregate(Max('mark'))
+		mean_mark = (Result.objects.filter(test_id=test_id)).aggregate(Avg('mark'))
+		std_mark = (Result.objects.filter(test_id=test_id)).aggregate(StdDev('mark'))
+
+		results = Result.objects.filter(test_id=test_id).values('mark')
+		result_array = []
+		for element in results:
+			result_array.append(element['mark'])
+		percentile_25 = numpy.percentile(result_array, 25)
+		percentile_50 = numpy.percentile(result_array, 50)
+		percentile_75 = numpy.percentile(result_array, 75)
+		return Response({'test_id': test_id,'count_mark':count_mark,'min_mark':min_mark, 'max_mark':max_mark, 
+			'mean':mean_mark,'std_mark':std_mark, 'percentile_25':percentile_25, 'percentile_50':percentile_50, 'percentile_75':percentile_75})
 
 class ResultPost(APIView):
 	"""
@@ -51,7 +44,6 @@ class ResultPost(APIView):
 	parser_classes = [XMLParser]
 
 	def post(self, request, format=None):
-		# return Response({'received data': request.data})
 		test_id = request.data[0]['mcq-test-result']['test-id']
 		# scanned_on = request.data[1]['scanned_on']
 		first_name = request.data[0]['mcq-test-result']['first-name']
@@ -67,7 +59,3 @@ class ResultPost(APIView):
 	def save_record(self, test_id, first_name, last_name, student_number, mark):
 		new_record = Result.objects.create(test_id = test_id, first_name=first_name, last_name=last_name, student_number=student_number, mark=mark)
 		new_record.save()
-
-# class ResultPost(generics.ListCreateAPIView):
-# 	queryset = Result.objects.all()
-# 	parser_classes = (XMLParser)
