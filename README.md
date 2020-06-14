@@ -94,7 +94,8 @@ You can either use the docker file to test out the code, or install django and o
     "percentile_75": 87.5
 }
 
-## Demo
+## SwaggerDocumentation
+![documentation](https://github.com/Bing-Violet/marking_draft/blob/master/marks/test_files/Untitled.gif)
 
 ## Limitations
 It's been a hectic week and I couldn't work out a big chunk of time so my unittests are still at a premature stage. I might update the tests in the rest of the days. I fully understand the significance of TDD and apologize for my practice went the other way round this time. 
