@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'numpy',
     'rest_framework',
     'rest_framework_xml',
+    'drf_yasg',
 ]
 
 REST_FRAMEWORK = {
