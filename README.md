@@ -109,6 +109,8 @@ You can either use the docker file to test out the code, or install django and o
 ## Limitations 
 It's been a hectic week and I couldn't work out a big chunk of time so my unittests are still at a premature stage. I might update the tests in the rest of the days. I fully understand the significance of TDD and apologize for my practice went the other way round this time. 
 
+Also, I ran out of time and forgot to convert scanned_on string into date and time, so the scanned_on data is not properly ingested.
+
 
 
 

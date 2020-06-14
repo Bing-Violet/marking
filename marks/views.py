@@ -16,6 +16,9 @@ from django.db.models import Min, Max, Avg, StdDev, Count, FloatField
 
 
 class ResultSummary(APIView):
+	"""
+	A view that can Get requests, and renders output in Json
+	"""
 	def get(self, request, *args, **kwargs):
 
 		renderer_classes = [JSONRenderer]
